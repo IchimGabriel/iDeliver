@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -211,16 +211,6 @@
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-<<<<<<< refs/remotes/origin/master
-    <Compile Include="Migrations\20181105110607_gre1.cs" />
-    <Compile Include="Migrations\20181105110607_gre1.Designer.cs">
-      <DependentUpon>20181105110607_gre1.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\201811080153164_Initial.cs" />
-    <Compile Include="Migrations\201811080153164_Initial.Designer.cs">
-      <DependentUpon>201811080153164_Initial.cs</DependentUpon>
->>>>>>> fix the DB
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

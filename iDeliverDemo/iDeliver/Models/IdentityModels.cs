@@ -25,10 +25,6 @@ namespace iDeliver.Models
         {
         }
 
-        public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Shop> Shops { get; set; }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

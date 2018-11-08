@@ -29,5 +29,11 @@ namespace iDeliver.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Order> Orders { get; set; }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Driver> Drivers { get; set; }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Shop> Shops { get; set; }
     }
 }

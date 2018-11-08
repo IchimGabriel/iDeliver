@@ -6,16 +6,8 @@ using System.Web;
 
 namespace iDeliver.Models
 {
-    public class Driver 
+    public class Driver
     {
-        public Driver()
-        {
-            OnLine = false;
-            OnDelivery = false;
-            Offline = true;
-        }
-
-
         [Key]
         public int DriverId { get; set; }
 

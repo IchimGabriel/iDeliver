@@ -13,16 +13,20 @@ namespace iDeliver.Test
         public void TestMethod1()
         {
             // arange
-            
+            var mock = new Mock<SendCodeViewModel>();
+            mock.SetupSet(s => s.ReturnUrl = "http://abc.com");
+
+            var testString = new SendCodeViewModel();
+            testString.ReturnUrl.Contains("http://");
 
             // act
 
 
-            
+            var result = mock.Equals(testString);
 
             // assert
 
-            
+            Assert.False(result);
         }
     }
 }

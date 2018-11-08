@@ -6,13 +6,8 @@ using System.Web;
 
 namespace iDeliver.Models
 {
-    public class Shop 
+    public class Shop
     {
-        public Shop()
-        {
-            Open = false;
-        }
-
         [Key]
         public int ShopId { get; set; }
 

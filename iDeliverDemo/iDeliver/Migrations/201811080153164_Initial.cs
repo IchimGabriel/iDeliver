@@ -7,56 +7,6 @@ namespace iDeliver.Migrations
     {
         public override void Up()
         {
-            // test commit
-
-            CreateTable(
-                "dbo.Drivers",
-                c => new
-                {
-                    DriverId = c.Int(nullable: false, identity: true),
-                    Name = c.String(),
-                    OnLine = c.Boolean(),
-                    OnDelivery = c.Boolean(),
-                    Offline = c.Boolean(),
-                })
-                .PrimaryKey(t => t.DriverId);
-
-            CreateTable(
-                "dbo.Orders",
-                c => new
-                {
-                    OrderId = c.Int(nullable: false, identity: true),
-                    TimeStamp = c.DateTime(nullable: false),
-                    Total = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    Commission = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    Address = c.String(),
-                    IsDelivered = c.Boolean(nullable: false),
-                    DriverId = c.Int(),
-                    ShopId = c.Int(nullable: false),
-                })
-                .PrimaryKey(t => t.OrderId)
-                .ForeignKey("dbo.Drivers", t => t.DriverId)
-                .ForeignKey("dbo.Shops", t => t.ShopId, cascadeDelete: true)
-                .Index(t => t.DriverId)
-                .Index(t => t.ShopId);
-
-            CreateTable(
-                "dbo.Shops",
-                c => new
-                {
-                    ShopId = c.Int(nullable: false, identity: true),
-                    Name = c.String(),
-                    Open = c.Boolean(nullable: false),
-                })
-                .PrimaryKey(t => t.ShopId);
-
-
-
-
-
-
-
-
             CreateTable(
                 "dbo.Drivers",
                 c => new

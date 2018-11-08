@@ -212,9 +212,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< refs/remotes/origin/master
     <Compile Include="Migrations\20181105110607_gre1.cs" />
     <Compile Include="Migrations\20181105110607_gre1.Designer.cs">
       <DependentUpon>20181105110607_gre1.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201811080153164_Initial.cs" />
+    <Compile Include="Migrations\201811080153164_Initial.Designer.cs">
+      <DependentUpon>201811080153164_Initial.cs</DependentUpon>
+>>>>>>> fix the DB
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -356,8 +362,13 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< refs/remotes/origin/master
     <EmbeddedResource Include="Migrations\20181105110607_gre1.resx">
       <DependentUpon>20181105110607_gre1.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201811080153164_Initial.resx">
+      <DependentUpon>201811080153164_Initial.cs</DependentUpon>
+>>>>>>> fix the DB
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

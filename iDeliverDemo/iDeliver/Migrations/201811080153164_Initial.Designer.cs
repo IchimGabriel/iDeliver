@@ -13,7 +13,7 @@ namespace iDeliver.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201811061244140_Initial"; }
+            get { return "201811080153164_Initial"; }
         }
         
         string IMigrationMetadata.Source

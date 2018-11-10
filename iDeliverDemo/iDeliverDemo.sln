@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver", "iDeliver\iDeliver.csproj", "{1DD4F388-A3A5-40C6-81BF-E8ECA643BE17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver.Test", "iDeliver.Test\iDeliver.Test.csproj", "{898CD026-F76F-4F8E-9DE3-32B217699591}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +16,10 @@ Global
 		{1DD4F388-A3A5-40C6-81BF-E8ECA643BE17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DD4F388-A3A5-40C6-81BF-E8ECA643BE17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DD4F388-A3A5-40C6-81BF-E8ECA643BE17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898CD026-F76F-4F8E-9DE3-32B217699591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898CD026-F76F-4F8E-9DE3-32B217699591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898CD026-F76F-4F8E-9DE3-32B217699591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898CD026-F76F-4F8E-9DE3-32B217699591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

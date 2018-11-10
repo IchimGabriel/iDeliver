@@ -34,6 +34,7 @@ namespace iDeliver.Models
 
         public int? DriverId { get; set; }
 
+        [Required]
         public int ShopId { get; set; }
 
 

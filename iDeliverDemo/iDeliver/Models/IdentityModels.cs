@@ -25,13 +25,19 @@ namespace iDeliver.Models
         {
         }
 
-        public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Shop> Shops { get; set; }
+       //  public DbSet<Driver> Drivers { get; set; }
+        //public DbSet<Order> Orders { get; set; }
+        //public DbSet<Shop> Shops { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Driver> Drivers { get; set; }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Shop> Shops { get; set; }
+
+        public System.Data.Entity.DbSet<iDeliver.Models.Order> Orders { get; set; }
     }
 }

@@ -212,10 +212,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20181105110607_gre1.cs" />
-    <Compile Include="Migrations\20181105110607_gre1.Designer.cs">
-      <DependentUpon>20181105110607_gre1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Driver.cs" />

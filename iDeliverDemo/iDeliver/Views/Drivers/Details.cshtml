@@ -1,0 +1,50 @@
+﻿@model iDeliver.Models.Driver
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Driver</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnLine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnLine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Offline)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DriverId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

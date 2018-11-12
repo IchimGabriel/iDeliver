@@ -217,3 +217,9 @@ FakesAssemblies/
 _Pvt_Extensions
 
 iDeliverDemo/\.axoCover/
+
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.cs
+
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.Designer\.cs
+
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.resx

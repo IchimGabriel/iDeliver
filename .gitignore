@@ -218,7 +218,15 @@ _Pvt_Extensions
 
 iDeliverDemo/\.axoCover/
 
+<<<<<<< refs/remotes/origin/master
 
 iDeliverDemo/iDeliver/Migrations/
 
 iDeliverDemo/iDeliver/iDeliver\.csproj
+=======
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.cs
+
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.Designer\.cs
+
+iDeliverDemo/iDeliver/Migrations/201811110946075_init\.resx
+>>>>>>> Add file to the brunch

@@ -212,6 +212,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811122142287_gre1.cs" />
+    <Compile Include="Migrations\201811122142287_gre1.Designer.cs">
+      <DependentUpon>201811122142287_gre1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Driver.cs" />
@@ -352,8 +356,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\20181105110607_gre1.resx">
-      <DependentUpon>20181105110607_gre1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811122142287_gre1.resx">
+      <DependentUpon>201811122142287_gre1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

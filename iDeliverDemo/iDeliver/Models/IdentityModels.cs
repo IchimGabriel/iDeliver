@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -15,6 +16,31 @@ namespace iDeliver.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        /// <summary>
+        /// Extending the default ApplicationUser Class
+        /// </summary>
+        public string Address { get; set; }
+        public string City { get; set; }
+
+        [Display(Name = "Postal Code")]
+        public string PostalCode { get; set; }
+
+        public string DisplayAddress
+        {
+            get
+            {
+                string dspAddress =
+                    string.IsNullOrWhiteSpace(this.Address) ? "" : this.Address;
+                string dspCity =
+                    string.IsNullOrWhiteSpace(this.City) ? "" : this.City;
+                string dspPostalCode =
+                    string.IsNullOrWhiteSpace(this.PostalCode) ? "" : this.PostalCode;
+
+                return string
+                    .Format("{0} {1} {2} ", dspAddress, dspCity, dspPostalCode);
+            }
         }
     }
 

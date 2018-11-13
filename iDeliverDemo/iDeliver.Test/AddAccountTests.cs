@@ -1,12 +1,8 @@
-﻿using System;
-using iDeliver.Controllers;
-using iDeliver.Models;
-using Xunit;
-using Moq;
+﻿using Xunit;
 
 namespace iDeliver.Test
 {
-    
+
     public class AddAccountTests
     {
         [Fact]

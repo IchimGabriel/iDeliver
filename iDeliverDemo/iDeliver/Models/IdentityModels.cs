@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -7,6 +7,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace iDeliver.Models
 {
+    public class ApplicationUserLogin : IdentityUserLogin<string> { }
+    public class ApplicationUserClaim : IdentityUserClaim<string> { }
+    public class ApplicationUserRole : IdentityUserRole<string> { }
+
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
@@ -42,6 +46,23 @@ namespace iDeliver.Models
                     .Format("{0} {1} {2} ", dspAddress, dspCity, dspPostalCode);
             }
         }
+    }
+
+    // Must be expressed in terms of our custom UserRole:
+    public class ApplicationRole : IdentityRole<string, ApplicationUserRole>
+    {
+        public ApplicationRole()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        public ApplicationRole(string name)
+            : this()
+        {
+            this.Name = name;
+        }
+
+        // Add any custom Role properties/code here
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

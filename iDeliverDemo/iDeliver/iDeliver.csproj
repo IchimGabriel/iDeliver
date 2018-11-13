@@ -216,9 +216,9 @@
     <Compile Include="Migrations\201811122142287_gre1.Designer.cs">
       <DependentUpon>201811122142287_gre1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811131056105_gi1.cs" />
-    <Compile Include="Migrations\201811131056105_gi1.Designer.cs">
-      <DependentUpon>201811131056105_gi1.cs</DependentUpon>
+    <Compile Include="Migrations\201811131853540_gre11.cs" />
+    <Compile Include="Migrations\201811131853540_gre11.Designer.cs">
+      <DependentUpon>201811131853540_gre11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -363,8 +363,8 @@
     <EmbeddedResource Include="Migrations\201811122142287_gre1.resx">
       <DependentUpon>201811122142287_gre1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131056105_gi1.resx">
-      <DependentUpon>201811131056105_gi1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811131853540_gre11.resx">
+      <DependentUpon>201811131853540_gre11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

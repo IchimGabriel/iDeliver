@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace iDeliver.Models
 {
@@ -10,14 +7,14 @@ namespace iDeliver.Models
     {
         public Order()
         {
-            DateTime = DateTime.Now;
+            TimeStamp = DateTime.Now;
             IsDelivered = false;
         }
-
+        
         [Key]
         public int OrderId { get; set; }
 
-        public DateTime DateTime { get; set; } 
+        public DateTime TimeStamp { get; set; } 
 
         [Display(Name = "Total")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]

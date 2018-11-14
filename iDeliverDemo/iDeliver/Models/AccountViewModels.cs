@@ -49,9 +49,8 @@ namespace iDeliver.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,10 @@ namespace iDeliver.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -86,6 +89,10 @@ namespace iDeliver.Models
 
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
+
+        [Required]
+        [Display(Name = "User Roles")]
+        public string UserRoles { get; set; }
     }
 
     public class ResetPasswordViewModel

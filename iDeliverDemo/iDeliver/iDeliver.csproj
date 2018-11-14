@@ -208,7 +208,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,9 +218,9 @@
     <Compile Include="Migrations\201811122142287_gre1.Designer.cs">
       <DependentUpon>201811122142287_gre1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811131853540_gre11.cs" />
-    <Compile Include="Migrations\201811131853540_gre11.Designer.cs">
-      <DependentUpon>201811131853540_gre11.cs</DependentUpon>
+    <Compile Include="Migrations\201811140936255_Gre11.cs" />
+    <Compile Include="Migrations\201811140936255_Gre11.Designer.cs">
+      <DependentUpon>201811140936255_Gre11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -344,6 +346,9 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,8 +368,8 @@
     <EmbeddedResource Include="Migrations\201811122142287_gre1.resx">
       <DependentUpon>201811122142287_gre1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811131853540_gre11.resx">
-      <DependentUpon>201811131853540_gre11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811140936255_Gre11.resx">
+      <DependentUpon>201811140936255_Gre11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

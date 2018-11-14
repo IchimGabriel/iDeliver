@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
 using iDeliver.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace iDeliver.Controllers
 {
@@ -45,8 +47,9 @@ namespace iDeliver.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "OrderId,DateTime,Total,Commission,Address,IsDelivered,DriverId,ShopId")] Order order)
+        public async Task<ActionResult> Create([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverId,ShopIdentity")] Order order)
         {
+            order.ShopIdentity = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
@@ -55,7 +58,7 @@ namespace iDeliver.Controllers
             }
 
             ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
-            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopId);
+            //ViewBag.ShopId = new SelectList(db.Shops, "ShopIdentity", "Name", order.ShopIdentity);
             return View(order);
         }
 
@@ -72,7 +75,7 @@ namespace iDeliver.Controllers
                 return HttpNotFound();
             }
             ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
-            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopId);
+            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopIdentity);
             return View(order);
         }
 
@@ -81,7 +84,7 @@ namespace iDeliver.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "OrderId,DateTime,Total,Commission,Address,IsDelivered,DriverId,ShopId")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverId,ShopIdentity")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,7 @@ namespace iDeliver.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
-            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopId);
+            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopIdentity);
             return View(order);
         }
 

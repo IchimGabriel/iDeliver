@@ -10,8 +10,10 @@ namespace iDeliver.Models
             Open = false;
         }
 
-        [Key]
+       
         public int ShopId { get; set; }
+        
+        public string ShopIdentity { get; set; }
 
         public string Name { get; set; }
 

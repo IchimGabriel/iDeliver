@@ -20,6 +20,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize(Roles = "ShopMng , Driver")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,10 +36,11 @@ namespace iDeliver.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "ShopMng")]
         public ActionResult Create()
         {
-            ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name");
-            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name");
+            ViewBag.DriverId = new SelectList(db.Drivers, "DriverIdentity", "Name");
+            ViewBag.ShopId = new SelectList(db.Shops, "ShopIdentity", "Name");
             return View();
         }
 
@@ -46,8 +48,9 @@ namespace iDeliver.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "ShopMng")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverId,ShopIdentity")] Order order)
+        public async Task<ActionResult> Create([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverIdentity,ShopIdentity")] Order order)
         {
             order.ShopIdentity = User.Identity.GetUserId();
             if (ModelState.IsValid)
@@ -57,8 +60,8 @@ namespace iDeliver.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
-            //ViewBag.ShopId = new SelectList(db.Shops, "ShopIdentity", "Name", order.ShopIdentity);
+            ViewBag.DriverId = new SelectList(db.Drivers, "DriverIdentity", "Name", order.DriverIdentity);
+            ViewBag.ShopId = new SelectList(db.Shops, "ShopIdentity", "Name", order.ShopIdentity);
             return View(order);
         }
 
@@ -74,8 +77,8 @@ namespace iDeliver.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
-            ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopIdentity);
+            ViewBag.DriverId = new SelectList(db.Drivers, "DriverIdentity", "Name", order.DriverIdentity);
+            ViewBag.ShopId = new SelectList(db.Shops, "ShopIdentity", "Name", order.ShopIdentity);
             return View(order);
         }
 
@@ -84,7 +87,7 @@ namespace iDeliver.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverId,ShopIdentity")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverIdentity,ShopIdentity")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -92,12 +95,13 @@ namespace iDeliver.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.DriverId = new SelectList(db.Drivers, "DriverId", "Name", order.DriverId);
+            ViewBag.DriverId = new SelectList(db.Drivers, "DriverIdentity", "Name", order.DriverIdentity);
             ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopIdentity);
             return View(order);
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -113,6 +117,7 @@ namespace iDeliver.Controllers
         }
 
         // POST: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

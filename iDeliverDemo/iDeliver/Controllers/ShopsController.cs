@@ -11,6 +11,7 @@ namespace iDeliver.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Shops
+        [Authorize(Roles = "Analyst, Admin")]
         public async Task<ActionResult> Index()
         {
             return View(await db.Shops.ToListAsync());
@@ -31,30 +32,16 @@ namespace iDeliver.Controllers
             return View(shop);
         }
 
+        /// <summary>
+        /// CREATE NEW SHOP AND DRIVER -> ADMINISTRATOR TASK -> REGISTER NEW USER 
+        /// </summary>
+        /// <returns></returns>
         // GET: Shops/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Shops/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ShopId,Name,Open")] Shop shop)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Shops.Add(shop);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
 
-            return View(shop);
-        }
 
         // GET: Shops/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,6 +60,7 @@ namespace iDeliver.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ShopId,Name,Open")] Shop shop)
         {
@@ -86,6 +74,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Shops/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -101,6 +90,7 @@ namespace iDeliver.Controllers
         }
 
         // POST: Shops/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

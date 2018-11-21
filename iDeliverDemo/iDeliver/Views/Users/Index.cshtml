@@ -1,18 +1,57 @@
-﻿
+﻿@model IEnumerable<iDeliver.Models.ApplicationUser>
+
 @{
     ViewBag.Title = "Index";
 }
 
-@if (ViewBag.displayMenu == "Yes")
-{
-    <h1>Welcome <strong>@ViewBag.Name</strong>. Now you can create user Role.</h1>
-    <ul>
-        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
-    </ul>
-}
-else
-{
-    <h2>  Welcome <strong>@ViewBag.Name</strong> Not really for you. Admins ONLY.</h2>
-}
+<h2>List of Users</h2>
 
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+        </tr>
+    }
+
+</table>
 

@@ -23,6 +23,7 @@ namespace iDeliver.Controllers
 		/// <returns></returns>
         // GET: Roles
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             if (!User.Identity.IsAuthenticated && !IsAdminUser())
@@ -51,7 +52,8 @@ namespace iDeliver.Controllers
 		/// </summary>
 		/// <returns></returns>
         [HttpGet]
-		public ActionResult Create()
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
         {
             if (!User.Identity.IsAuthenticated && !IsAdminUser())
             {
@@ -68,6 +70,7 @@ namespace iDeliver.Controllers
 		/// <param name="Role"></param>
 		/// <returns></returns>
 		[HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(IdentityRole Role)
         {
             if (!User.Identity.IsAuthenticated && !IsAdminUser())

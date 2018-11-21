@@ -17,6 +17,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Drivers/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,30 +32,9 @@ namespace iDeliver.Controllers
             return View(driver);
         }
 
-        // GET: Drivers/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Drivers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DriverId,Name,OnLine,OnDelivery,Offline")] Driver driver)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Drivers.Add(driver);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(driver);
-        }
 
         // GET: Drivers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,7 +54,7 @@ namespace iDeliver.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DriverId,Name,OnLine,OnDelivery,Offline")] Driver driver)
+        public async Task<ActionResult> Edit([Bind(Include = "DriverId,Name,OnLine,OnDelivery")] Driver driver)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +66,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Drivers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -101,6 +82,7 @@ namespace iDeliver.Controllers
         }
 
         // POST: Drivers/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

@@ -135,7 +135,7 @@ namespace iDeliver.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             ViewBag.Name = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Admin"))
@@ -146,9 +146,9 @@ namespace iDeliver.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, Driver driver, Shop shop)
         {
             if (ModelState.IsValid)
             {
@@ -159,11 +159,29 @@ namespace iDeliver.Controllers
                 user.City = model.City;
                 user.PostalCode = model.PostalCode;
 
+                // CHECK User Role and add to that particular table
+                if (model.UserRoles == "Driver")
+                {
+                    driver = new Driver { DriverIdentity = user.Id, Name = model.UserName };
+                    _context.Drivers.Add(driver);
+                    _context.SaveChanges();
+                }
+
+                if (model.UserRoles == "ShopMng")
+                {
+                    shop = new Shop { ShopIdentity = user.Id, Name = model.UserName };
+                    _context.Shops.Add(shop);
+                    _context.SaveChanges();
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // if the user is succesfully added pair the user id with user role
+                    UserManager.AddToRole(user.Id, model.UserRoles);
+
+                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

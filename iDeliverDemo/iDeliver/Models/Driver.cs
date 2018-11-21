@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace iDeliver.Models
 {
-    public class Driver 
+    public class Driver
     {
         public Driver()
         {
@@ -13,7 +13,9 @@ namespace iDeliver.Models
 
 
         [Key]
-        public int DriverId { get; set; }
+        public int Id { get; set; }
+
+        public string DriverIdentity { get; set; }
 
         public string Name { get; set; }
 

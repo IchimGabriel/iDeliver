@@ -13,7 +13,7 @@ namespace iDeliver.Models
 
 
         [Key]
-        public int Id { get; set; }
+        public int DriverId { get; set; }
 
         public string DriverIdentity { get; set; }
 

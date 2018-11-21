@@ -214,13 +214,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811122142287_gre1.cs" />
-    <Compile Include="Migrations\201811122142287_gre1.Designer.cs">
-      <DependentUpon>201811122142287_gre1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811140936255_Gre11.cs" />
-    <Compile Include="Migrations\201811140936255_Gre11.Designer.cs">
-      <DependentUpon>201811140936255_Gre11.cs</DependentUpon>
+    <Compile Include="Migrations\201811211339071_Initial.cs" />
+    <Compile Include="Migrations\201811211339071_Initial.Designer.cs">
+      <DependentUpon>201811211339071_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,12 +327,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Drivers\Create.cshtml" />
     <Content Include="Views\Drivers\Delete.cshtml" />
     <Content Include="Views\Drivers\Details.cshtml" />
     <Content Include="Views\Drivers\Edit.cshtml" />
     <Content Include="Views\Drivers\Index.cshtml" />
-    <Content Include="Views\Shops\Create.cshtml" />
     <Content Include="Views\Shops\Delete.cshtml" />
     <Content Include="Views\Shops\Details.cshtml" />
     <Content Include="Views\Shops\Edit.cshtml" />
@@ -365,11 +359,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811122142287_gre1.resx">
-      <DependentUpon>201811122142287_gre1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811140936255_Gre11.resx">
-      <DependentUpon>201811140936255_Gre11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811211339071_Initial.resx">
+      <DependentUpon>201811211339071_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

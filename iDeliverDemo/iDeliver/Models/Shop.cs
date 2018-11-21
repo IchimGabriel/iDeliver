@@ -11,7 +11,7 @@ namespace iDeliver.Models
         }
 
        [Key]
-        public int Id { get; set; }
+        public int ShopId { get; set; }
 
         public string ShopIdentity { set; get; }
 

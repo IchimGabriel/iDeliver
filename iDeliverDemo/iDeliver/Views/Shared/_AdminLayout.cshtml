@@ -21,6 +21,12 @@
             </div>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Roles", "Index", "Roles", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Shops", "Index", "Shops", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Drivers", "Index", "Drivers", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Users", "Index", "Users", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("New Order", "Index", "Orders", null, new { @class = "nav-link" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,10 +56,9 @@
                     <a class="text-muted" href="#">Jobs</a>
                 </p>
                 <p style="text-align:center;">&copy; @DateTime.Now.Year - iDeliver - Developers: Grigore Bivol / Gabriel Ichim</p>
-            </div>    
+            </div>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

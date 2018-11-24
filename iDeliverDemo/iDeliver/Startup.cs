@@ -42,7 +42,7 @@ namespace iDeliver
                     Email = "bivolgri@yahoo.com"
                 };
 
-                string userPass = "grigorebivol1";
+                string userPass = "g*******1";
 
                 var checkUser = UserManager.Create(user, userPass);
 

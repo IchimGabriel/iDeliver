@@ -13,11 +13,24 @@ namespace iDeliver.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Orders
+        [Authorize(Roles = "Admin, Analyst, ShopMng")]
         public async Task<ActionResult> Index()
         {
             var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
             return View(await orders.ToListAsync());
         }
+
+        //GET: Orders for current shop
+        [Authorize(Roles = "ShopMng")]
+        public async Task<ActionResult> IndexShopMng()
+        {
+            //var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
+            var user = User.Identity.GetUserId();
+            var orders = db.Orders.FindAsync(user);
+           
+            return View(await orders);
+        }
+
 
         // GET: Orders/Details/5
         [Authorize(Roles = "ShopMng , Driver")]
@@ -66,6 +79,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Admin, Driver")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,6 +100,7 @@ namespace iDeliver.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin, Driver")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverIdentity,ShopIdentity")] Order order)
         {

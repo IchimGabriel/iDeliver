@@ -346,6 +346,7 @@
     <Content Include="Views\Shared\_DriverLayout.cshtml" />
     <Content Include="Views\Shared\_ShopLayout.cshtml" />
     <Content Include="Views\Shared\_AnalystLayout.cshtml" />
+    <Content Include="Views\Orders\IndexShopMng.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

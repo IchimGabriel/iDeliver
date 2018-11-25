@@ -11,6 +11,7 @@ namespace iDeliver.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Drivers
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index()
         {
             return View(await db.Drivers.ToListAsync());
@@ -53,6 +54,7 @@ namespace iDeliver.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "DriverId,Name,OnLine,OnDelivery")] Driver driver)
         {

@@ -10,6 +10,9 @@ body {
     line-height: 60px; /* Vertically center the text there */
     background-color: #3c4669;
 }
+#push {
+    height: 100px;
+}
 
 
 /* Wrapper for page content to push down footer */

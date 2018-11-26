@@ -30,7 +30,7 @@ namespace iDeliver.Models
 
         public bool IsDelivered { get; set; }
 
-        public int? DriverIdentity { get; set; }
+        public string DriverIdentity { get; set; }
 
         public string ShopIdentity { get; set; }
 

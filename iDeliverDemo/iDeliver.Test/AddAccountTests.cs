@@ -8,15 +8,18 @@ namespace iDeliver.Test
         [Fact]
         public void TestMethod1()
         {
-            // arange
+            // Arange
+            FakeTestData fake1 = new FakeTestData();
             
 
-            // act
+            
+            
+            // Act
 
 
             
 
-            // assert
+            // Assert
 
             
         }

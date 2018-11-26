@@ -15,6 +15,10 @@ namespace iDeliver
             ConfigureAuth(app);
             //CreateRolesAndUsers();
         }
+        #region CREATE ADMIN USER
+        //private void CreateRolesAndUsers()
+        //{
+        //    ApplicationDbContext context = new ApplicationDbContext();
 
         //private void CreateRolesAndUsers()
         //{

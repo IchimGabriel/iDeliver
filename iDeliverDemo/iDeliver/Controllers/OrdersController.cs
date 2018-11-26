@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using iDeliver.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
 
 namespace iDeliver.Controllers
 {
@@ -24,11 +25,13 @@ namespace iDeliver.Controllers
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> IndexShopMng()
         {
-            //var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
             var user = User.Identity.GetUserId();
-            var orders = db.Orders.FindAsync(user);
+            var orders = db.Orders.Select(s => s.ShopIdentity.Equals(user));
+
+            //var orders = db.Orders.ToListAsync().Result.FindAll(s => s.ShopIdentity.Equals(user));
+            //orders.OrderByDescending(t => t.TimeStamp);
            
-            return View(await orders);
+            return View(await orders.ToListAsync());
         }
 
 

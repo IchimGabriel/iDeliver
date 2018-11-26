@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 
 namespace iDeliver.Test
 {
@@ -10,7 +10,6 @@ namespace iDeliver.Test
         {
             // Arange
             FakeTestData fake1 = new FakeTestData();
-            
             // Test 
             
             

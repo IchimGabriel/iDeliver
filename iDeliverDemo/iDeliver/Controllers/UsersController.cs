@@ -16,6 +16,7 @@ namespace iDeliver.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Users
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index()
         {
             return View(await db.Users.ToListAsync());

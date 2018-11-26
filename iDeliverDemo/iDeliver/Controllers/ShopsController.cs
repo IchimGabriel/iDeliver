@@ -18,6 +18,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Shops/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)

@@ -1,1 +1,62 @@
-﻿
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - iDeliver</title>
+    <link rel="icon" href="@Url.Content("favicon.png")" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-expand-sm navbar-dark navbar-fixed-top bg-bluesh">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src='@Url.Content("~/Content/Images/logo2.png")' />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav mr-auto">
+                    
+                    <li class="nav-item">@Html.ActionLink("New Order", "Index", "Orders", null, new { @class = "nav-link" })</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div id="wrap" class="container body-content">
+        @RenderBody()
+        <div id="push"></div>
+        <hr />
+        <footer id="footer" class="bg-bluesh">
+            <div class="container">
+                <p align="center">
+                    <a href="#">
+                        <img src='@Url.Content("~/Content/Images/logo2.png")' alt="iDeliver logo" height=47>
+                    </a>
+                <p align="center">
+                    Sleek, intuitive, and powerful application that connects Shops and Drivers.
+                    <br>
+                    <br>
+                    <a class="btn btn-outline-warning btn-sm" href="#"><strong>Explore iDeliver docs »</strong></a>
+                    <br>
+                    <br>
+                    <a class="text-muted" href="#">Report bug</a>
+                    ·
+                    <a class="text-muted" href="#">Request feature</a>
+                    ·
+                    <a class="text-muted" href="#">Jobs</a>
+                </p>
+                <p style="text-align:center;">&copy; @DateTime.Now.Year - iDeliver - Developers: Grigore Bivol / Gabriel Ichim</p>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

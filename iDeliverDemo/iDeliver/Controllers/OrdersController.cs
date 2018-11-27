@@ -16,6 +16,7 @@ namespace iDeliver.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Orders for current shop
+        [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Index()
         {
@@ -26,6 +27,7 @@ namespace iDeliver.Controllers
         }
 
         //GET: Orders for current shop -> OnRoute to customers
+        [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> OnDelivery()
         {   
@@ -35,6 +37,7 @@ namespace iDeliver.Controllers
         }
 
         //GET: Orders for current shop -> Delivered
+        [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Delivered()
         {
@@ -45,12 +48,29 @@ namespace iDeliver.Controllers
         }
 
         // GET: Orders from all shops
-        [Authorize(Roles = "ShopMng")]
+        [HttpGet]
+        [Authorize(Roles = "Driver")]
         public async Task<ActionResult> AllOrders()
         {
             var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
 
             return View(await orders.ToListAsync());
+        }
+
+        // GET: Orders from all shops
+        [HttpGet]
+        [Authorize(Roles = "ShopMng")]
+        public ActionResult Statistics()
+        {
+            var user = User.Identity.GetUserId();
+            var orders = db.Orders.Where(s => s.ShopIdentity.Equals(user));
+
+            ViewBag.OrdersCount = orders.Count();
+            ViewBag.TotalValue = orders.Sum(s => s.Total);
+            ViewBag.TotalCommision = orders.Sum(s => s.Commission);
+            ViewBag.ShopTotal = orders.Sum(s => s.Total)- orders.Sum(s => s.Commission);
+
+            return View();
         }
 
 

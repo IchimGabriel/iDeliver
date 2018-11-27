@@ -37,5 +37,6 @@ namespace iDeliver.Models
 
         public virtual Driver Driver { get; set; }
         public virtual Shop Shop { get; set; }
+
     }
 }

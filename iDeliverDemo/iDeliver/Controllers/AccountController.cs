@@ -446,6 +446,12 @@ namespace iDeliver.Controllers
                     _signInManager.Dispose();
                     _signInManager = null;
                 }
+
+                if (_context != null)
+                {
+                    _context.Dispose();
+                    _context = null;
+                }
             }
 
             base.Dispose(disposing);

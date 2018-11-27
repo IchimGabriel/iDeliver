@@ -219,3 +219,7 @@ _Pvt_Extensions
 iDeliverDemo/\.axoCover/
 
 iDeliverDemo/iDeliver/Migrations/
+
+iDeliverDemo/iDeliver/Startup\.cs
+
+iDeliverDemo/iDeliver/Web\.config

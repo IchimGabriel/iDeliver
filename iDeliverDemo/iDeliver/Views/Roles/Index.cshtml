@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
 @{
     ViewBag.Title = "Add Role";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<hr />
+<hr />
+<h2>User Roles</h2>
+<hr />
+
 <table>
-    <tr>
-        <td>
-            <h2> User Roles</h2>
-        </td>
-
-    </tr>
-
     <tr>
         <td>
             <table>
@@ -21,13 +21,12 @@
                         <td>
                             @item.Name
                         </td>
-                    </tr>}
+                    </tr>
+                }
             </table>
         </td>
     </tr>
-    <tr><td><hr></td></tr>
-    <tr>
-        <td> @Html.ActionLink("Create New Role", "Create", "Roles") </td>
-    </tr>
 </table>
+<hr />
+<p>@Html.ActionLink("Create New Role", "Create", "Roles", null , new { @class="btn btn-primary"})</p>
 

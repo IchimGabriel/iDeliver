@@ -5,13 +5,21 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Add New User Role:</h2>
+<hr />
+<hr />
+<h2>Add User Role</h2>
+<hr />
 
-@using (Html.BeginForm())
-{
-    <p> Enter User Role Name:</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    @Html.EditorFor(m => m.Name)
-    <input type="submit" value="Create Role" />
-}
+        <h6> Enter Role Name</h6>
 
+        <div class="form-actions no-color">
+        @Html.EditorFor(m => m.Name)
+        <input type="submit" value="Create Role" />
+        </div>
+    }
+</div>

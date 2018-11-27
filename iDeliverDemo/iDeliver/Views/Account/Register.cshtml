@@ -3,7 +3,9 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<hr /><hr />
 <h2>@ViewBag.Title.</h2>
+<hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()

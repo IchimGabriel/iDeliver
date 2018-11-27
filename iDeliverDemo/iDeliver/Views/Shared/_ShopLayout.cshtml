@@ -21,9 +21,9 @@
             </div>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Orders", "IndexShopMng", "Orders", null, new { @class = "nav-link" })</li>
-
-                    <li class="nav-item">@Html.ActionLink("New Order", "Index", "Orders", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("On Route", "OnDelivery", "Orders", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Delivered", "Delivered", "Orders", null, new { @class = "nav-link" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

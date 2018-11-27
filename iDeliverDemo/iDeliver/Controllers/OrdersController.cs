@@ -6,31 +6,50 @@ using iDeliver.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace iDeliver.Controllers
 {
     public class OrdersController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders
-        [Authorize(Roles = "Admin, Analyst, ShopMng")]
+        // GET: Orders for current shop
+        [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Index()
         {
-            var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
+            var user = User.Identity.GetUserId();
+            var orders = db.Orders.Where(s => s.ShopIdentity.Equals(user)).OrderByDescending(t => t.TimeStamp);
+
             return View(await orders.ToListAsync());
         }
 
-        //GET: Orders for current shop
+        //GET: Orders for current shop -> OnRoute to customers
         [Authorize(Roles = "ShopMng")]
-        public async Task<ActionResult> IndexShopMng()
-        {
-            var user = User.Identity.GetUserId();
-            var orders = db.Orders.Select(s => s.ShopIdentity.Equals(user));
+        public async Task<ActionResult> OnDelivery()
+        {   
+            var ondelivery = db.Orders.Where(s => s.DriverIdentity.Length > 1).OrderByDescending(t => t.TimeStamp);
 
-            //var orders = db.Orders.ToListAsync().Result.FindAll(s => s.ShopIdentity.Equals(user));
-            //orders.OrderByDescending(t => t.TimeStamp);
-           
+            return View(await ondelivery.ToListAsync());
+        }
+
+        //GET: Orders for current shop -> Delivered
+        [Authorize(Roles = "ShopMng")]
+        public async Task<ActionResult> Delivered()
+        {
+
+            var delivered = db.Orders.Where(s => s.IsDelivered.Equals(true));
+
+            return View(await delivered.ToListAsync());
+        }
+
+        // GET: Orders from all shops
+        [Authorize(Roles = "ShopMng")]
+        public async Task<ActionResult> AllOrders()
+        {
+            var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
+
             return View(await orders.ToListAsync());
         }
 
@@ -103,7 +122,7 @@ namespace iDeliver.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin, Driver")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "OrderId,TimeSpan,Total,Commission,Address,IsDelivered,DriverIdentity,ShopIdentity")] Order order)
         {

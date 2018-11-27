@@ -1,18 +1,15 @@
 ﻿@model IEnumerable<iDeliver.Models.Order>
 
 @{
-    ViewBag.Title = "OrderList";
+    ViewBag.Title = "Delivered";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
 
 <hr />
 <hr />
-<h2>Orders</h2>
+<h2>Delivered</h2>
 <hr />
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-</p>
 <table class="table table-striped">
     <tr>
         <th>
@@ -23,9 +20,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Commission)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
@@ -45,12 +39,10 @@
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Commission)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
         </tr>
     }
 
 </table>
+

@@ -22,6 +22,16 @@ namespace iDeliver.Controllers
         {
             var user = User.Identity.GetUserId();
             var orders = db.Orders.Where(s => s.ShopIdentity.Equals(user)).OrderByDescending(t => t.TimeStamp);
+            var shop = db.Shops.Where(s => s.ShopIdentity.Equals(user)).ToList();
+            var isOpen = shop[0].Open;
+           
+            ViewBag.Open = isOpen;
+            ViewBag.Close = false;
+            //if ()
+            //{
+
+            //}
+            //ViewBag.Open = isOpen;
 
             return View(await orders.ToListAsync());
         }
@@ -65,10 +75,17 @@ namespace iDeliver.Controllers
             var user = User.Identity.GetUserId();
             var orders = db.Orders.Where(s => s.ShopIdentity.Equals(user));
 
-            ViewBag.OrdersCount = orders.Count();
-            ViewBag.TotalValue = orders.Sum(s => s.Total);
-            ViewBag.TotalCommision = orders.Sum(s => s.Commission);
-            ViewBag.ShopTotal = orders.Sum(s => s.Total)- orders.Sum(s => s.Commission);
+            if (orders.Count() == 0)
+            {
+                ViewBag.Message = "There are no Orders";
+            }
+            else
+            {
+                ViewBag.OrdersCount = orders.Count();
+                ViewBag.TotalValue = orders.Sum(s => s.Total);
+                ViewBag.TotalCommision = orders.Sum(s => s.Commission);
+                ViewBag.ShopTotal = orders.Sum(s => s.Total) - orders.Sum(s => s.Commission);
+            }
 
             return View();
         }
@@ -91,6 +108,7 @@ namespace iDeliver.Controllers
         }
 
         // GET: Orders/Create
+        [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public ActionResult Create()
         {

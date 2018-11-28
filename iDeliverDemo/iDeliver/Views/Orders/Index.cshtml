@@ -1,86 +1,121 @@
 ﻿@model IEnumerable<iDeliver.Models.Order>
 
+
 @{
-    ViewBag.Title = "OrderList";
+    ViewBag.Title = "Order List";
     Layout = "~/Views/Shared/_ShopLayout.cshtml";
 }
-
 <hr />
 <hr />
-<div class="row">
-    <div class="col-8"><h2>Orders</h2></div>
-    <div class="col-4">
-        @*@Html.ActionLink("Shop Closed", "Close", "Shared", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-danger" })*@
-        <!-- Button trigger modal  -->
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
-            Shop Closed
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Open Shop</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Open your shop to issue orders !
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Open Shop</button>
+@if (@ViewBag.Open == false)
+{
+    <div class="row">
+        <div class="col-8"><h2>Orders</h2></div>
+        <div class="col-4">
+            <!-- Button trigger modal  -->
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#openShop">
+                The Shop is Closed
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="openShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Open Shop</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Open your shop to issue orders !
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            @Html.ActionLink("Open Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-success" })
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<hr />
+}
+else
+{
+    <div class="row">
+        <div class="col-8"><h2>Orders</h2></div>
+        <div class="col-4">
+            <!-- Button trigger modal  -->
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#closeShop">
+                The Shop is Open
+            </button>
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-</p>
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DriverIdentity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Commission)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-    </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="closeShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Close Shop</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Have a good night !
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            @Html.ActionLink("Close Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @foreach (var item in Model)
-    {
+    <hr />
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DriverIdentity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commission)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
+            <th>
+                @Html.DisplayNameFor(mode => mode.DriverIdentity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriverIdentity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+        }
+    </table>
+}

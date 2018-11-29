@@ -241,6 +241,8 @@
     <Content Include="Content\Images\about.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\about1.jpg" />
+    <Content Include="Content\Images\about2.jpg" />
     <Content Include="Content\Images\favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -259,6 +261,8 @@
     <Content Include="Content\Images\map.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\map_bray.jpg" />
+    <Content Include="Content\Images\map_dublin.jpg" />
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

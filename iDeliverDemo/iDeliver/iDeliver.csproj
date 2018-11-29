@@ -376,7 +376,7 @@
     <Content Include="Views\Orders\OnDelivery.cshtml" />
     <Content Include="Views\Orders\Delivered.cshtml" />
     <Content Include="Views\Orders\Statistics.cshtml" />
-    <Content Include="Views\Shops\CurrentShop.cshtml" />
+    <Content Include="Views\Shops\ShopOpen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

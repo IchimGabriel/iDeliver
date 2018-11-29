@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<iDeliver.Models.Order>
-
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Order List";
@@ -8,71 +8,90 @@
 <hr />
 <hr />
 
-@if (@ViewBag.Open == false)
+@if (Request.IsAuthenticated && @ViewBag.Open == false)
 {
-    <div class="row">
-        <div class="col-8"><h2>Orders</h2></div>
-        <div class="col-4">
-            <!-- Button trigger modal  -->
-            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#openShop">
-                The Shop is Closed
-            </button>
+    using (Html.BeginForm("ShopOpen", "Shops", FormMethod.Post, new { id = "openForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-8"><h2>Orders</h2></div>
+            <div class="col-4">
 
-            <!-- Modal -->
-            <div class="modal fade" id="openShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Open Shop</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Open your shop to issue orders !
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            @Html.ActionLink("Open Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-success" })
+                <!-- Button trigger modal  -->
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#openShop">
+                    The Shop is Closed
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="openShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Open Shop</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Open your shop to issue orders !
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <ul>
+                                    <li class="nav-item nav-link"><a style="color: rgba(0, 0, 0, 1);" href="javascript:document.getElementById('openForm').submit()"> Open Shop</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
+    }
 }
 else
 {
-    <div class="row">
-        <div class="col-8"><h2>Orders</h2></div>
-        <div class="col-4">
-            <!-- Button trigger modal  -->
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#closeShop">
-                The Shop is Open
-            </button>
+    using (Html.BeginForm("ShopClose", "Shops", FormMethod.Post, new { id = "openForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-8">
+                <h2>Orders</h2>
+            </div>
+            <div class="col-4">
 
-            <!-- Modal -->
-            <div class="modal fade" id="closeShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Close Shop</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Have a good night !
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            @Html.ActionLink("Close Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-danger" })
+                <!-- Button trigger modal  -->
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#closeShop">
+                    The Shop is Open
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="closeShop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Close Shop</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Have a good night !
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <ul>
+                                    <li class="nav-item nav-link"><a style="color: rgba(0, 0, 0, 1);" href="javascript:document.getElementById('openForm').submit()"> Close Shop</a></li>
+                                </ul>
+                                @*@Html.ActionLink("Close Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-danger" })*@
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    }
 
     <hr />
     <p>
@@ -99,23 +118,23 @@ else
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DriverIdentity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeStamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Total)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Commission)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-            </tr>
+            < tr >
+            < td >
+            @Html.DisplayFor(modelItem => item.DriverIdentity)
+            </ td >
+            < td >
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+            </ td >
+            < td >
+            @Html.DisplayFor(modelItem => item.Total)
+            </ td >
+            < td >
+            @Html.DisplayFor(modelItem => item.Commission)
+            </ td >
+            < td >
+            @Html.DisplayFor(modelItem => item.Address)
+            </ td >
+            </ tr >
         }
     </table>
 }

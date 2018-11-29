@@ -377,6 +377,8 @@
     <Content Include="Views\Orders\Delivered.cshtml" />
     <Content Include="Views\Orders\Statistics.cshtml" />
     <Content Include="Views\Shops\ShopOpen.cshtml" />
+    <Content Include="Views\Drivers\AllDrivers.cshtml" />
+    <Content Include="Views\Drivers\AllOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,9 +36,8 @@
                                 Open your shop to issue orders !
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <ul>
-                                    <li class="nav-item nav-link"><a style="color: rgba(0, 0, 0, 1);" href="javascript:document.getElementById('openForm').submit()"> Open Shop</a></li>
+                                    <li class="btn btn-success"><a style="text-decoration:none; color: azure;" href="javascript:document.getElementById('openForm').submit()"> Open Shop</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -79,11 +78,9 @@ else
                                 Have a good night !
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <ul>
-                                    <li class="nav-item nav-link"><a style="color: rgba(0, 0, 0, 1);" href="javascript:document.getElementById('openForm').submit()"> Close Shop</a></li>
+                                    <li class="btn btn-danger"><a style="text-decoration:none; color: azure;" href="javascript:document.getElementById('openForm').submit()"> Close Shop</a></li>
                                 </ul>
-                                @*@Html.ActionLink("Close Shop", "Edit", "Shops", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-danger" })*@
                             </div>
                         </div>
                     </div>
@@ -118,23 +115,23 @@ else
 
         @foreach (var item in Model)
         {
-            < tr >
-            < td >
-            @Html.DisplayFor(modelItem => item.DriverIdentity)
-            </ td >
-            < td >
-            @Html.DisplayFor(modelItem => item.TimeStamp)
-            </ td >
-            < td >
-            @Html.DisplayFor(modelItem => item.Total)
-            </ td >
-            < td >
-            @Html.DisplayFor(modelItem => item.Commission)
-            </ td >
-            < td >
-            @Html.DisplayFor(modelItem => item.Address)
-            </ td >
-            </ tr >
+            <tr>
+                <td>
+                @Html.DisplayFor(modelItem => item.DriverIdentity)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Commission)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
         }
     </table>
 }

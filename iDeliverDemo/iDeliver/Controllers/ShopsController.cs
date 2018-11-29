@@ -4,11 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using iDeliver.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
-using System.Collections.Generic;
-using System;
-using System.Data.Entity.Infrastructure;
 
 namespace iDeliver.Controllers
 {
@@ -40,8 +36,7 @@ namespace iDeliver.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            
+     
             Shop shop = await db.Shops.FindAsync(id);
             if (shop == null)
             {
@@ -54,59 +49,59 @@ namespace iDeliver.Controllers
         // POST: Shops/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [Authorize(Roles = "ShopMng")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ShopId,Name,Open")] Shop shop)
-        {
-            bool saveFailed;
-            do
-            {
-                saveFailed = false;
+        //[HttpPost]
+        //[Authorize(Roles = "ShopMng")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Edit([Bind(Include = "ShopId,Name,Open")] Shop shop)
+        //{
+        //    bool saveFailed;
+        //    do
+        //    {
+        //        saveFailed = false;
 
-                try
-                {
-                    var user = User.Identity.GetUserId();
-                    var meshop = db.Shops.Where(s => s.ShopIdentity.Equals(user)).ToList();
-                    var meid = meshop[0].ShopId;
-                    var name = meshop[0].Name;
+        //        try
+        //        {
+        //            var user = User.Identity.GetUserId();
+        //            var meshop = db.Shops.Where(s => s.ShopIdentity.Equals(user)).ToList();
+        //            var meid = meshop[0].ShopId;
+        //            var name = meshop[0].Name;
 
-                    var currentshop = db.Shops.Find(meid);
+        //            var currentshop = db.Shops.Find(meid);
                    
-                    currentshop.ShopIdentity = user;
-                    currentshop.Name = name;
-                    currentshop.Open = true;
+        //            currentshop.ShopIdentity = user;
+        //            currentshop.Name = name;
+        //            currentshop.Open = true;
 
 
-                    db.Entry(currentshop).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    saveFailed = true;
+        //            db.Entry(currentshop).State = EntityState.Modified;
+        //            db.SaveChanges();
+        //        }
+        //        catch (DbUpdateConcurrencyException ex)
+        //        {
+        //            saveFailed = true;
 
-                    // Update the values of the entity that failed to save from the store
-                    ex.Entries.Single().Reload();
-                }
+        //            // Update the values of the entity that failed to save from the store
+        //            ex.Entries.Single().Reload();
+        //        }
 
-            } while (saveFailed);
+        //    } while (saveFailed);
 
-            //if (ModelState.IsValid)
-            //{
-            //    var user = User.Identity.GetUserId();
-            //    shop.ShopIdentity = user;
-            //    shop.Open = false;
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    var user = User.Identity.GetUserId();
+        //    //    shop.ShopIdentity = user;
+        //    //    shop.Open = false;
 
-            //    db.Entry(shop).State = EntityState.Modified;
-            //    await db.SaveChangesAsync();
-            //    return RedirectToAction("Index", "Orders");
-            //}
-            return RedirectToAction("Index", "Orders"); //View(shop);
-        }
+        //    //    db.Entry(shop).State = EntityState.Modified;
+        //    //    await db.SaveChangesAsync();
+        //    //    return RedirectToAction("Index", "Orders");
+        //    //}
+        //    return RedirectToAction("Index", "Orders"); //View(shop);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ShopClose([Bind(Include = "ShopId,Name,Open")] Shop shop)
+        public async Task<ActionResult> ShopClose([Bind(Include = "ShopId,ShopIdentity,Name,Open")] Shop shop)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +128,7 @@ namespace iDeliver.Controllers
         //[HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ShopOpen(int? id ,[Bind(Include = "ShopId,ShopIdentity, Name,Open")] Shop shop)
+        public async Task<ActionResult> ShopOpen([Bind(Include = "ShopId,ShopIdentity,Name,Open")] Shop shop)
         {
             if (ModelState.IsValid)
             {

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
 using iDeliver.Models;
+using System.Linq;
+using Microsoft.AspNet.Identity;
 
 namespace iDeliver.Controllers
 {
@@ -10,7 +12,64 @@ namespace iDeliver.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Drivers
+        // GET: Orders from all shops
+        [HttpGet]
+        [Authorize(Roles = "Driver")]
+        public async Task<ActionResult> AllOrders()
+        {
+            //var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
+            var orders = db.Orders;
+
+            return View(await orders.ToListAsync());
+        }
+
+        //GET: Orders TO DELIVER current Driver -> OnRoute to customers
+        [HttpGet]
+        [Authorize(Roles = "Driver")]
+        public async Task<ActionResult> OnDelivery()
+        {
+            var user = User.Identity.GetUserId();
+            var ondelivery = db.Orders.Where(s => s.DriverIdentity.Length > 1 && s.DriverIdentity.Equals(user));
+
+            return View(await ondelivery.ToListAsync());
+        }
+
+        //GET: Orders for current Driver -> Delivered
+        [HttpGet]
+        [Authorize(Roles = "Driver")]
+        public async Task<ActionResult> Delivered()
+        {
+            var user = User.Identity.GetUserId();
+
+            var delivered = db.Orders.Where(s => s.IsDelivered.Equals(true) && s.DriverIdentity.Equals(user));
+
+            return View(await delivered.ToListAsync());
+        }
+
+        // GET: Statistics for Driver
+        [HttpGet]
+        [Authorize(Roles = "Driver")]
+        public ActionResult Statistics()
+        {
+            var user = User.Identity.GetUserId();
+            var orders = db.Orders.Where(s => s.DriverIdentity.Equals(user));
+
+            if (orders.Count() == 0)
+            {
+                ViewBag.Message = "There are no Orders";
+            }
+            else
+            {
+                ViewBag.OrdersCount = orders.Count();
+                ViewBag.TotalValue = orders.Sum(s => s.Total);
+                ViewBag.TotalCommision = orders.Sum(s => s.Commission);
+            }
+
+            return View();
+        }
+
+
+        // GET: All Drivers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index()
         {

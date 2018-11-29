@@ -17,22 +17,22 @@ namespace iDeliver.Controllers
 
         // GET: Orders for current shop
         [HttpGet]
-        [Authorize(Roles = "ShopMng")]
+        [Authorize(Roles = "ShopMng, Driver")]
         public async Task<ActionResult> Index()
         {
             var user = User.Identity.GetUserId();
-            var orders = db.Orders.Where(s => s.ShopIdentity.Equals(user)).OrderByDescending(t => t.TimeStamp);
-            var shop = db.Shops.Where(s => s.ShopIdentity.Equals(user)).ToList();
+            var orders = db.Orders
+                .Where(s => s.ShopIdentity.Equals(user))
+                .OrderByDescending(t => t.TimeStamp);
+
+            var shop = db.Shops
+                .Where(s => s.ShopIdentity.Equals(user))
+                .ToList();
+
             var isOpen = shop[0].Open;
            
             ViewBag.Open = isOpen;
-            ViewBag.Close = false;
-            //if ()
-            //{
-
-            //}
-            //ViewBag.Open = isOpen;
-
+     
             return View(await orders.ToListAsync());
         }
 
@@ -40,8 +40,12 @@ namespace iDeliver.Controllers
         [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> OnDelivery()
-        {   
-            var ondelivery = db.Orders.Where(s => s.DriverIdentity.Length > 1).OrderByDescending(t => t.TimeStamp);
+        {
+            var user = User.Identity.GetUserId();
+
+            var ondelivery = db.Orders
+                .Where(s => s.DriverIdentity.Length > 1 && s.ShopIdentity.Equals(user))
+                .OrderByDescending(t => t.TimeStamp);
 
             return View(await ondelivery.ToListAsync());
         }
@@ -51,21 +55,13 @@ namespace iDeliver.Controllers
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Delivered()
         {
+            var user = User.Identity.GetUserId();
 
-            var delivered = db.Orders.Where(s => s.IsDelivered.Equals(true));
+            var delivered = db.Orders.Where(s => s.IsDelivered.Equals(true) && s.ShopIdentity.Equals(user));
 
             return View(await delivered.ToListAsync());
         }
 
-        // GET: Orders from all shops
-        [HttpGet]
-        [Authorize(Roles = "Driver")]
-        public async Task<ActionResult> AllOrders()
-        {
-            var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
-
-            return View(await orders.ToListAsync());
-        }
 
         // GET: Orders from all shops
         [HttpGet]

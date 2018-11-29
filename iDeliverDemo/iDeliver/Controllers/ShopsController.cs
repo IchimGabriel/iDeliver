@@ -46,59 +46,6 @@ namespace iDeliver.Controllers
             return View(shop);
         }
 
-        // POST: Shops/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[Authorize(Roles = "ShopMng")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "ShopId,Name,Open")] Shop shop)
-        //{
-        //    bool saveFailed;
-        //    do
-        //    {
-        //        saveFailed = false;
-
-        //        try
-        //        {
-        //            var user = User.Identity.GetUserId();
-        //            var meshop = db.Shops.Where(s => s.ShopIdentity.Equals(user)).ToList();
-        //            var meid = meshop[0].ShopId;
-        //            var name = meshop[0].Name;
-
-        //            var currentshop = db.Shops.Find(meid);
-                   
-        //            currentshop.ShopIdentity = user;
-        //            currentshop.Name = name;
-        //            currentshop.Open = true;
-
-
-        //            db.Entry(currentshop).State = EntityState.Modified;
-        //            db.SaveChanges();
-        //        }
-        //        catch (DbUpdateConcurrencyException ex)
-        //        {
-        //            saveFailed = true;
-
-        //            // Update the values of the entity that failed to save from the store
-        //            ex.Entries.Single().Reload();
-        //        }
-
-        //    } while (saveFailed);
-
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    //    var user = User.Identity.GetUserId();
-        //    //    shop.ShopIdentity = user;
-        //    //    shop.Open = false;
-
-        //    //    db.Entry(shop).State = EntityState.Modified;
-        //    //    await db.SaveChangesAsync();
-        //    //    return RedirectToAction("Index", "Orders");
-        //    //}
-        //    return RedirectToAction("Index", "Orders"); //View(shop);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ShopClose([Bind(Include = "ShopId,ShopIdentity,Name,Open")] Shop shop)

@@ -15,9 +15,12 @@ namespace iDeliver.Controllers
         
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders for current shop
+        /// <summary>
+        /// ORDERS ISSUED BY CURRENT SHOP
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "ShopMng, Driver")]
+        [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Index()
         {
             var user = User.Identity.GetUserId();
@@ -36,7 +39,10 @@ namespace iDeliver.Controllers
             return View(await orders.ToListAsync());
         }
 
-        //GET: Orders for current shop -> OnRoute to customers
+        /// <summary>
+        /// CURRENT SHOP ORDERS -> ON ROUTE TO CUSTOMERS
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> OnDelivery()
@@ -50,7 +56,10 @@ namespace iDeliver.Controllers
             return View(await ondelivery.ToListAsync());
         }
 
-        //GET: Orders for current shop -> Delivered
+        /// <summary>
+        /// CURRENT SHOP ORDERS -> DELIVERED
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public async Task<ActionResult> Delivered()
@@ -62,8 +71,10 @@ namespace iDeliver.Controllers
             return View(await delivered.ToListAsync());
         }
 
-
-        // GET: Orders from all shops
+        /// <summary>
+        /// ORDERS FROM ALL SHOPS -> ADMIN AUTHORIZATION
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public ActionResult Statistics()
@@ -86,24 +97,10 @@ namespace iDeliver.Controllers
             return View();
         }
 
-
-        // GET: Orders/Details/5
-        [Authorize(Roles = "ShopMng , Driver")]
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = await db.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // GET: Orders/Create
+        /// <summary>
+        /// GET: CREATE ORDERS -> ORDERS/CREATE
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "ShopMng")]
         public ActionResult Create()
@@ -113,9 +110,11 @@ namespace iDeliver.Controllers
             return View();
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: CREATE ORDERS -> ORDERS/CREATE
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns>CREATE NEW ORDER</returns>
         [HttpPost]
         [Authorize(Roles = "ShopMng")]
         [ValidateAntiForgeryToken]
@@ -134,8 +133,9 @@ namespace iDeliver.Controllers
             return View(order);
         }
 
+
         // GET: Orders/Edit/5
-        [Authorize(Roles = "Admin, Driver")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -168,6 +168,22 @@ namespace iDeliver.Controllers
             }
             ViewBag.DriverId = new SelectList(db.Drivers, "DriverIdentity", "Name", order.DriverIdentity);
             ViewBag.ShopId = new SelectList(db.Shops, "ShopId", "Name", order.ShopIdentity);
+            return View(order);
+        }
+
+        // GET: Orders/Details/5
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = await db.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
             return View(order);
         }
 

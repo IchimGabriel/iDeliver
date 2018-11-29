@@ -59,8 +59,7 @@
             @Html.DisplayFor(modelItem => item.ShopIdentity)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @Html.ActionLink("DELIVERED", "OrderDelivered", new { id=item.OrderId })
         </td>
     </tr>
 }

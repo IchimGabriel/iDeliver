@@ -12,29 +12,46 @@ namespace iDeliver.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders from all shops
+        /// <summary>
+        /// ORDERS FROM ALL SHOPS
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Driver")]
         public async Task<ActionResult> AllOrders()
         {
-            //var orders = db.Orders.Include(o => o.Driver).Include(o => o.Shop);
-            var orders = db.Orders;
+            var orders = db.Orders.Where(s => s.DriverIdentity == null);
+
+            var user = User.Identity.GetUserId();
+            var driver = db.Drivers
+                .Where(s => s.DriverIdentity.Equals(user))
+                .ToList();
+
+            var isOnline = driver[0].OnLine;
+
+            ViewBag.Online = isOnline;
 
             return View(await orders.ToListAsync());
         }
 
-        //GET: Orders TO DELIVER current Driver -> OnRoute to customers
+        /// <summary>
+        /// ORDERS ON ROUTE TO CUSTOMERS FOR CURRENT DRIVER
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Driver")]
         public async Task<ActionResult> OnDelivery()
         {
             var user = User.Identity.GetUserId();
-            var ondelivery = db.Orders.Where(s => s.DriverIdentity.Length > 1 && s.DriverIdentity.Equals(user));
+            var ondelivery = db.Orders.Where(s => s.DriverIdentity.Length > 1 && s.DriverIdentity.Equals(user) && s.IsDelivered == false);
 
             return View(await ondelivery.ToListAsync());
         }
 
-        //GET: Orders for current Driver -> Delivered
+        /// <summary>
+        /// DELIVERED ORDERS FOR CURRENT DRIVER
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Driver")]
         public async Task<ActionResult> Delivered()
@@ -46,7 +63,10 @@ namespace iDeliver.Controllers
             return View(await delivered.ToListAsync());
         }
 
-        // GET: Statistics for Driver
+        /// <summary>
+        /// GET STATISTICS FOR DRIVER
+        /// </summary>
+        /// <returns></returns>   
         [HttpGet]
         [Authorize(Roles = "Driver")]
         public ActionResult Statistics()
@@ -66,6 +86,130 @@ namespace iDeliver.Controllers
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// PUT THE DRIVER IN OFFLINE MODE
+        /// </summary>
+        /// <param name="driver"> OnLine= false;</param>
+        /// <returns>CHANGE STATUS FROM TRUE TO FALSE</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DriverOffline([Bind(Include = "DriverId,DriverIdentity,Name,OnLine,OnDelivery")] Driver driver)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = User.Identity.GetUserId();
+                var medriver = db.Drivers.Where(s => s.DriverIdentity.Equals(user)).ToList();
+                var meid = medriver[0].DriverId;
+                var name = medriver[0].Name; 
+
+                var currentdriver = db.Drivers.Find(meid);
+
+                currentdriver.DriverIdentity = user;
+                currentdriver.Name = name;
+                currentdriver.OnLine = false;
+
+                db.Entry(currentdriver).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("AllOrders", "Drivers");
+            }
+
+            return RedirectToAction("AllOrders", "Drivers");
+        }
+
+        /// <summary>
+        /// PUT THE DRIVER IN ONLINE MODE
+        /// </summary>
+        /// <param name="driver"> OnLine= true;</param>
+        /// <returns>CHANGE STATUS FROM FALSE TO TRUE</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DriverOnline([Bind(Include = "DriverId,DriverIdentity,Name,OnLine,OnDelivery")] Driver driver)
+        {
+            if (ModelState.IsValid)  
+            {
+                var user = User.Identity.GetUserId();
+                var medriver = db.Drivers.Where(s => s.DriverIdentity.Equals(user)).ToList();
+                var meid = medriver[0].DriverId;
+                var name = medriver[0].Name;
+
+                var currentdriver = db.Drivers.Find(meid);
+
+                currentdriver.DriverIdentity = user;
+                currentdriver.Name = name;
+                currentdriver.OnLine = true;
+
+                db.Entry(currentdriver).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("AllOrders", "Drivers");
+            }
+
+            return RedirectToAction("AllOrders", "Drivers");
+        }
+
+        /// <summary>
+        /// ORDER TAKEN BY DRIVER
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET: Orders/Edit/5
+        [Authorize(Roles = "Driver")]
+        public async Task<ActionResult> AddDriver(int? id, Order order)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var currentorder = await db.Orders.FindAsync(id);
+            if (currentorder == null)
+            {
+                return HttpNotFound();
+            }
+            
+            var user = User.Identity.GetUserId();
+            currentorder.DriverIdentity = user;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(currentorder).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("OnDelivery", "Drivers");
+            }
+
+            return RedirectToAction("OnDelivery", "Drivers");
+        }
+
+        /// <summary>
+        /// ORDER DELIVERED
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Driver")]
+        public async Task<ActionResult> OrderDelivered(int? id, Order order)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest); 
+            }
+            var currentorder = await db.Orders.FindAsync(id);
+            if (currentorder == null)
+            {
+                return HttpNotFound();
+            }
+
+            var user = User.Identity.GetUserId();
+            //order.DriverIdentity = user;
+            currentorder.IsDelivered = true;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(currentorder).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Delivered", "Drivers");
+            }
+
+            return RedirectToAction("Delivered", "Drivers");
         }
 
 

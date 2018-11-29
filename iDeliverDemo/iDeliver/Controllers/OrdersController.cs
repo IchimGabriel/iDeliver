@@ -25,7 +25,7 @@ namespace iDeliver.Controllers
         {
             var user = User.Identity.GetUserId();
             var orders = db.Orders
-                .Where(s => s.ShopIdentity.Equals(user))
+                .Where(s => s.ShopIdentity.Equals(user) && s.DriverIdentity == null)
                 .OrderByDescending(t => t.TimeStamp);
 
             var shop = db.Shops
@@ -50,7 +50,7 @@ namespace iDeliver.Controllers
             var user = User.Identity.GetUserId();
 
             var ondelivery = db.Orders
-                .Where(s => s.DriverIdentity.Length > 1 && s.ShopIdentity.Equals(user))
+                .Where(s => s.DriverIdentity.Length > 1 && s.ShopIdentity.Equals(user) && s.IsDelivered == false)
                 .OrderByDescending(t => t.TimeStamp);
 
             return View(await ondelivery.ToListAsync());

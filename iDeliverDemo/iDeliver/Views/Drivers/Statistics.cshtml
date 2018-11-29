@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Statistics";
+    Layout = "~/Views/Shared/_DriverLayout.cshtml";
+}
+
+<hr />
+<hr />
+<h2>Statistics</h2>
+<hr />
+@ViewBag.Message
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Value (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Total number of orders : @ViewBag.OrdersCount</td>
+            <td>@ViewBag.TotalValue</td>
+        </tr>
+        <tr>
+            <td>Total Commission to be paid</td>
+            <td>@ViewBag.TotalCommision</td>
+        </tr>
+    </tbody>
+</table>
+

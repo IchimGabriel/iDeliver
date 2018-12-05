@@ -6,10 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver", "iDeliver\iDeliv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver.Test", "iDeliver.Test\iDeliver.Test.csproj", "{898CD026-F76F-4F8E-9DE3-32B217699591}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver.Client", "iDeliver.Client\iDeliver.Client.csproj", "{54B64FD9-FAF5-460E-9FB0-84930563113A}"
+EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -23,11 +22,18 @@ Global
 		{898CD026-F76F-4F8E-9DE3-32B217699591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{898CD026-F76F-4F8E-9DE3-32B217699591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{898CD026-F76F-4F8E-9DE3-32B217699591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68EBD196-5555-42EE-BCDB-EFFD97327897}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

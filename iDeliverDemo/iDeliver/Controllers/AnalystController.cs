@@ -22,18 +22,14 @@ namespace iDeliver.Controllers
         public ActionResult Index()
         {
 
-            var data = db.Orders.Where(s => s.ShopIdentity != null).OrderByDescending(s => s.Total).ToList(); //.Include(s => s.Driver).Include(s => s.Shop);
-            var ototal = data.Where(s => s.Total != 0);
+            var data = db.Orders.Where(s => s.ShopIdentity != null).OrderByDescending(s => s.Total).ToList();
             List<int> id = new List<int>();
             List<decimal> total = new List<decimal>();
 
-            foreach (var item in ototal)
+            foreach (var item in data)
             {
-                if (item.Total > 0)
-                {
                     id.Add(item.OrderId);
                     total.Add(item.Total);
-                }
             }
             var myChart = new Chart(width: 800, height: 600, theme: ChartTheme.Green)
                 .AddTitle("Orders")

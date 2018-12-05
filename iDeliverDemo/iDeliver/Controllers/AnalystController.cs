@@ -1,12 +1,8 @@
 ﻿using iDeliver.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
-using System.Data;
-using System.Xml;
 using System.Web.Helpers;
 using System.Web.Mvc;
 
@@ -28,8 +24,8 @@ namespace iDeliver.Controllers
 
             foreach (var item in data)
             {
-                    id.Add(item.OrderId);
-                    total.Add(item.Total);
+                id.Add(item.OrderId);
+                total.Add(item.Total);
             }
             var myChart = new Chart(width: 800, height: 600, theme: ChartTheme.Green)
                 .AddTitle("Orders")

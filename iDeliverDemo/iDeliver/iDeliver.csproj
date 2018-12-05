@@ -205,6 +205,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalystController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -385,6 +386,7 @@
     <Content Include="Views\Drivers\OnDelivery.cshtml" />
     <Content Include="Views\Drivers\Delivered.cshtml" />
     <Content Include="Views\Drivers\Statistics.cshtml" />
+    <Content Include="Views\Analyst\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

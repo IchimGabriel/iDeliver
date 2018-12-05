@@ -15,7 +15,6 @@ namespace iDeliver
             ConfigureAuth(app);
             //CreateRolesAndUsers();
         }
-        #region CREATE ADMIN USER
 
         //private void CreateRolesAndUsers()
         //{
@@ -25,14 +24,14 @@ namespace iDeliver
         //    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
         //    // In Startup iam creating first Admin Role and creating a default Admin User 
-         
-        //    if (!RoleManager.RoleExists("Administrator"))
+        //    // test changes Grig
+        //    if (!RoleManager.RoleExists("Admin"))
         //    {
 
         //        // first we create Admin rool
         //        var role = new IdentityRole
         //        {
-        //            Name = "Administrator"
+        //            Name = "Admin"
         //        };
         //        RoleManager.Create(role);
 
@@ -40,27 +39,27 @@ namespace iDeliver
 
         //        var user = new ApplicationUser
         //        {
-        //            UserName = "Gabriel",
-        //            Email = "ichimgabriel@gmail.com"
+        //            UserName = "Grigore",
+        //            Email = "bivolgri@yahoo.com"
         //        };
 
-        //        string userPass = "";
+        //        string userPass = "g*******1";
 
         //        var checkUser = UserManager.Create(user, userPass);
 
         //        //Add default User to Role Admin
         //        if (checkUser.Succeeded)
         //        {
-        //            var result1 = UserManager.AddToRole(user.Id, "Administrator");
+        //            var result1 = UserManager.AddToRole(user.Id, "Admin");
         //        }
         //    }
 
         //    // create Shop Manager role 
-        //    if (!RoleManager.RoleExists("ShopManager"))
+        //    if (!RoleManager.RoleExists("ShopMng"))
         //    {
         //        var role = new IdentityRole
         //        {
-        //            Name = "ShopManager"
+        //            Name = "ShopMng"
         //        };
         //        RoleManager.Create(role);
         //    }
@@ -85,6 +84,5 @@ namespace iDeliver
         //        RoleManager.Create(role);
         //    }
         //}
-        #endregion
     }
 }

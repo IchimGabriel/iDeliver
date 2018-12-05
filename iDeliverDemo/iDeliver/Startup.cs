@@ -15,7 +15,7 @@ namespace iDeliver
             ConfigureAuth(app);
             //CreateRolesAndUsers();
         }
-
+        //
         //private void CreateRolesAndUsers()
         //{
         //    ApplicationDbContext context = new ApplicationDbContext();

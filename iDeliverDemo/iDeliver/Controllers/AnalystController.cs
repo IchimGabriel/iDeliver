@@ -17,7 +17,6 @@ namespace iDeliver.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
             var data = db.Orders.Where(s => s.ShopIdentity != null).OrderByDescending(s => s.Total).ToList();
             List<int> id = new List<int>();
             List<decimal> total = new List<decimal>();
@@ -27,15 +26,13 @@ namespace iDeliver.Controllers
                 id.Add(item.OrderId);
                 total.Add(item.Total);
             }
-            var myChart = new Chart(width: 800, height: 600, theme: ChartTheme.Green)
+            var myChart = new Chart(width: 1000, height: 800, theme: ChartTheme.Green)
                 .AddTitle("Orders")
                 .AddSeries("All Orders",
                     xValue: id, xField: "Id",
                     yValues: total, yFields: "Total")
                 .AddLegend()
-                .Write();
-
-            ///ViewBag.Chart = myChart;
+                .Write();        
 
             return View();
         }

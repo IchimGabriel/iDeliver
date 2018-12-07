@@ -19,7 +19,7 @@ namespace iDeliver.Client
             HttpClient myClient = null;
             try
             {
-                myClient = new HttpClient{ BaseAddress = new Uri("https://idelivernow.azurewebsites.net/")};
+                myClient = new HttpClient{ BaseAddress = new Uri("https://idelivernow.azurewebsites.net/")};   // the location on Azure
                 myClient.DefaultRequestHeaders.Accept.Clear();
                 myClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             }
@@ -33,7 +33,7 @@ namespace iDeliver.Client
             Console.ReadLine();
         }
 
-        //	Return data about ..................
+        //	Return data about All Orders. 
          static async Task GetAllOrdersSumAmount(HttpClient myClient)
          {
             try

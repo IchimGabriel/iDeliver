@@ -1,20 +1,37 @@
 ﻿using iDeliver.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iDeliver.Models;
 
 namespace iDeliver.Test
 {
-    public class FakeTestData
+    [TestClass()]
+    public class iDeliverTest
     {
-        static List<Driver> fakeDrivers = new List<Driver>()
-       {
-           new Driver() { DriverId=1, DriverIdentity="George", Name="George", OnDelivery=false, OnLine=false},
-           new Driver() { DriverId=2, DriverIdentity="John", Name="John", OnDelivery=false, OnLine=false},
-       };
+        [TestMethod()]
+        public void DriverTest()
+        {
+            Driver dr = new Driver() { DriverId = 1000, DriverIdentity = "GG", Name = "George Green", OnDelivery = true, OnLine = true };
+            Assert.IsInstanceOfType(dr, typeof(Driver));
+            Assert.AreEqual(dr.DriverId, 1000);
+            Assert.AreEqual(dr.Name, "George Green");
+            Assert.AreEqual(dr.OnDelivery,true);
+            
+            
+            //List<Driver> testDriver = new List<Driver>()
+            // {
+            // new Driver() { DriverId=1, DriverIdentity="George", Name="George", OnDelivery=false, OnLine=false},
+            // Assert.AreEqual(testDriver.DriverID)
 
+
+            // };
+             //new Driver() { DriverId=2, DriverIdentity="John", Name="John", OnDelivery=false, OnLine=false},
+             
+        }
         static List<Shop> fakeShops = new List<Shop>()
        {
            new Shop() { Name="Pizza", Open=true,  ShopId=1, ShopIdentity="Pizza" },

@@ -3,24 +3,24 @@ using Xunit;
 namespace iDeliver.Test
 {
 
-    public class AddAccountTests
-    {
-        [Fact]
-        public void TestMethod1()
-        {
-            // Arange
-            FakeTestData fake1 = new FakeTestData();
-            // Test 
-            
-            
-            // Act
+    //    public class AddAccountTests
+    //    {
+    //        [Fact]
+    //        public void TestMethod1()
+    //        {
+    //            // Arange
+    //            FakeTestData fake1 = new FakeTestData();
+    //            // Test 
 
-            // changes 5 Dec
-            
 
-            // Assert
+    //            // Act
 
-            
-        }
-    }
+    //            // changes 5 Dec
+
+
+    //            // Assert
+
+
+    //        }
+    //    }
 }

@@ -9,7 +9,7 @@ namespace iDeliver.Client
     class AspNetUser
     {
 
-        // 
+        
         public string Id { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

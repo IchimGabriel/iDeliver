@@ -35,7 +35,7 @@ namespace iDeliver.Client
 
         //	Return data about ..................
          static async Task GetAllOrdersSumAmount(HttpClient myClient)
-        {
+         {
             try
             {
                 HttpResponseMessage response = await myClient.GetAsync("api/orders");  
@@ -60,7 +60,7 @@ namespace iDeliver.Client
             {
                 Console.WriteLine(e.Message);
             }
-        }
+         }
     }
 }
     

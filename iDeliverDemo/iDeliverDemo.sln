@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver.Test", "iDeliver.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliver.Client", "iDeliver.Client\iDeliver.Client.csproj", "{54B64FD9-FAF5-460E-9FB0-84930563113A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDeliverTests", "iDeliverTests\iDeliverTests.csproj", "{DF9FB24F-A236-4DBF-9E3B-4394529AFB5F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +26,6 @@ Global
 		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B64FD9-FAF5-460E-9FB0-84930563113A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF9FB24F-A236-4DBF-9E3B-4394529AFB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF9FB24F-A236-4DBF-9E3B-4394529AFB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF9FB24F-A236-4DBF-9E3B-4394529AFB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF9FB24F-A236-4DBF-9E3B-4394529AFB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

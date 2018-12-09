@@ -37,9 +37,10 @@ Several quick start options are available:
 * Download the latest release.
 * Clone the repo: git clone https://github.com/IchimGabriel/iDeliver.git
 
-##### We did not expose the **Web.Config**, but this page can be found in one of our commits.
+##### We did not expose the 'Web.Config', but this page can be found in one of our commits.
 After instalation open the solution in Visul Studio:
-* - First run 'Enable-Migrations' in Package Manager Console
+* - Restore Packages
+* - Run 'Enable-Migrations' in Package Manager Console
 * - 'Add-Migration' and give it a name
 * - 'Update-Database' to seed data
 

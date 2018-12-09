@@ -37,7 +37,7 @@ Several quick start options are available:
 * Download the latest release.
 * Clone the repo: git clone https://github.com/IchimGabriel/iDeliver.git
 
-##### We did not expose the ** Web.Config**, but this page can be found in one of our commits.
+##### We did not expose the **Web.Config**, but this page can be found in one of our commits.
 After instalation open the solution in Visul Studio:
 * - First run 'Enable-Migrations' in Package Manager Console
 * - 'Add-Migration' and give it a name
@@ -55,7 +55,7 @@ iDeliver has an ApiController that allow other applications to use share data.
 A demo can be vieew at this web address: https://idelivernow.azurewebsites.net/swagger/ui/index#/WebAPI
 
 When you need to retrieve or manipulate information from another system, and that system provides REST APIs for that effect, you can consume a REST API in your application.
-Run ** iDeliver.Client** (Console Application) to see how the API is consumed.
+Run **iDeliver.Client** (Console Application) to see how the API is consumed.
 
 ## What's included
 

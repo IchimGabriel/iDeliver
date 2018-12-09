@@ -40,7 +40,7 @@ namespace iDeliver.Controllers
                     view = View("Index", "_ShopLayout");
                     break;
                 case "Analyst":
-                    view = View("Index", "_AnaystLayout");
+                    view = View("Index", "_AnalystLayout");
                     break;
                 default:
                     view = View("Index", "_Layout");

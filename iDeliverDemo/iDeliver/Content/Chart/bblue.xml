@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+ <Chart BackColor="#ffffff" 
+   BorderStyle="None"
+   Palette="None"
+   PaletteCustomColors="#3e4767; #ff3300">
+  <ChartAreas>    
+    <ChartArea Name="Default" _Template_="All"
+           BackColor="64, 165, 191, 228"
+		       BackGradientStyle="TopBottom"
+		       BackSecondaryColor="White"
+		       BorderColor="64, 64, 64, 64"
+		       BorderDashStyle="Solid"
+		        ShadowColor="Transparent">
+    <AxisY LineColor="#ccc" IsLabelAutoFit="false" IsMarginVisible="true">        
+        <MajorGrid Interval="Auto" LineColor="#D8D8D8" />   
+        <MajorTickMark LineColor="#aaaaaa" LineWidth="1" LineDashStyle="Solid" /> 
+        <LabelStyle Font="Helvetica Neue, 10 px" />      
+      </AxisY>      
+      <AxisX LineColor="#ccc" IsLabelAutoFit="false" IsMarginVisible="true">        
+        <MajorGrid LineColor="#D8D8D8" /> 
+        <MajorTickMark LineColor="#3e4767" />   
+        <LabelStyle Font="Helvetica Neue, 10 px"/>      
+      </AxisX>     
+     </ChartArea>  
+    </ChartAreas>
+   <Series>
+     <Series Name ="Orders"  IsValueShownAsLabel="true">
+     </Series>
+   </Series>
+   <Legends>
+     <Legend _Template_="All"
+     BackColor="Transparent"
+     Font="Trebuchet MS, 8.25pt, style=Bold"
+     IsTextAutoFit="False" />
+   </Legends>
+ </Chart> 

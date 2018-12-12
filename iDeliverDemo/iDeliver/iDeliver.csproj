@@ -280,6 +280,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chart\bblue.xml" />
     <Content Include="Content\Images\11.jpg" />
     <Content Include="Content\Images\22.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -287,14 +288,20 @@
     <Content Include="Content\Images\33.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\404-page.jpg" />
+    <Content Include="Content\Images\about-page.jpg" />
     <Content Include="Content\Images\about1.jpg" />
     <Content Include="Content\Images\about2.jpg" />
+    <Content Include="Content\Images\admin-navigation.jpg" />
+    <Content Include="Content\Images\DBSchema.png" />
+    <Content Include="Content\Images\driver-navigation.jpg" />
     <Content Include="Content\Images\favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\header.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\landing-page.png" />
     <Content Include="Content\Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -306,6 +313,7 @@
     </Content>
     <Content Include="Content\Images\map_bray.jpg" />
     <Content Include="Content\Images\map_dublin.jpg" />
+    <Content Include="Content\Images\shop-navigation.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

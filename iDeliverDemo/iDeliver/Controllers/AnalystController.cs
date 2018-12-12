@@ -25,7 +25,7 @@ namespace iDeliver.Controllers
                 id.Add(item.OrderId);
                 total.Add(item.Total);
             }
-            var myChart = new Chart(width: 900, height: 500, theme: ChartTheme.Blue)
+            var myChart = new Chart(width: 900, height: 500, themePath: "~/Content/Chart/bblue.xml")
                 .AddTitle("Orders")
                 .AddSeries("Orders",
                     xValue: id, xField: "Id",
@@ -35,7 +35,7 @@ namespace iDeliver.Controllers
                 .SetYAxis("Value", 0, 100)
                 .Write()
                 .GetBytes("png");
-           
+
             return File(myChart, "image/bytes");
         }
 
